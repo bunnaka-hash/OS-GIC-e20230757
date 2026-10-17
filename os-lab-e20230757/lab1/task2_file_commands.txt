@@ -1,0 +1,13 @@
+/home/gic-pen-bunnaka/os-gic-e20230757/os-lab-e20230757/lab1/task2_files
+FILE1.txt
+FILE2.txt
+This is file FILE1
+This is file FILE2
+FILE1.txt
+FILE1_copy.txt
+FILE2.txt
+FILE1.txt
+FILE1_copy.txt
+FILE2_renamed.txt
+FILE1.txt
+FILE2_renamed.txt
