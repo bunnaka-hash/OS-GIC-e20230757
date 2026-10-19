@@ -1,0 +1,15 @@
+/usr/bin/mc
+/etc/mc:
+edit.indent.rc
+filehighlight.ini
+mc.default.keymap
+mcedit.menu
+mc.emacs.keymap
+mc.ext.ini
+mc.keymap
+mc.menu
+mc.vim.keymap
+sfs.ini
+drwxr-xr-x 2 root root 4096 Oct 19 09:00 /etc/mc
+drwxr-xr-x 2 root root 4096 Oct 19 09:07 /etc/mc
+ls: cannot access '/etc/mc': No such file or directory
