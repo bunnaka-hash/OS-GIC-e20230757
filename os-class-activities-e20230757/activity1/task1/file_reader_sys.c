@@ -1,4 +1,4 @@
-write(STDERR_FILENO, err, sizeof("Error writing output\n") - 1);write(STDERR_FILENO, err, sizeof("Error writing output\n") - 1);#include <fcntl.h>
+#include <fcntl.h>
 #include <unistd.h>
 
 int main(void) {
@@ -8,7 +8,7 @@ int main(void) {
 
     if (fd == -1) {
         const char *err = "Error opening file\n";
-        write(STDERR_FILENO, err, sizeof("Error writing output\n") - 1);
+        write(STDERR_FILENO, err, sizeof("Error opening file\n") - 1);
         return 1;
     }
 
@@ -26,7 +26,7 @@ int main(void) {
 
             if (bytesWritten <= 0) {
                 const char *err = "Error writing output\n";
-                write(STDERR_FILENO, err, sizeof("Error reading file\n") - 1);
+                write(STDERR_FILENO, err, sizeof("Error writing output\n") - 1);
                 close(fd);
                 return 1;
             }
@@ -39,7 +39,7 @@ int main(void) {
 
     if (bytesRead == -1) {
         const char *err = "Error reading file\n";
-        write(STDERR_FILENO, err, 19);
+        write(STDERR_FILENO, err, sizeof("Error reading file\n") - 1);
         return 1;
     }
 
