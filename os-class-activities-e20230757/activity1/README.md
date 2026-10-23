@@ -217,82 +217,54 @@ The library version made significantly more system calls (38 calls vs 33 calls i
 
 ### OS Layers Diagram
 
-> 📸 Your diagram of the OS layers, labeled with real data from your system:
+> The diagram of the OS layers, labeled with real data from your system:
 
-```mermaid
-flowchart TD
-    subgraph UserSpace["1. User Space (Ring 3) — Unprivileged Mode"]
-        direction TB
-        Apps["User Applications: file_creator_sys, file_creator_lib, dir_list_sys, dir_list_lib"]
-        Shell["Command Shell: bash"]
-        LibC["C Standard Library: libc.so.6 (printf, fopen, fgets, fclose)"]
-    end
+![OS Diagram](screenshots/task4_os_layers_diagram.png)
 
-    subgraph SCI["2. System Call Interface (SCI) — Trap / Mode Transition"]
-        Syscalls["POSIX System Calls: open(), openat(), read(), write(), close(), stat(), brk()"]
-    end
 
-    subgraph KernelSpace["3. Kernel Space (Ring 0) — Privileged Kernel Mode"]
-        direction TB
-        KRelease["Kernel: Linux 7.0.0-38-generic #38-Ubuntu SMP PREEMPT_DYNAMIC (x86_64)"]
-        KSubsystems["Core Subsystems: Process Scheduler (CFS), Virtual Memory (VMM), VFS, IPC, Networking"]
-        KModules["Loaded Modules (lsmod): qrtr, binfmt_misc, kvm_intel, kvm, nfnetlink, intel_rapl_msr"]
-        ProcFS["Virtual Filesystem: /proc (/proc/cpuinfo, /proc/meminfo, /proc/self/maps)"]
-    end
+## Questions
 
-    subgraph HardwareLayer["4. Physical / Virtual Hardware Layer"]
-        direction TB
-        CPU["CPU: Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz (8 cores, 16384 KB cache)"]
-        RAM["Memory: 7,600,784 kB (~7.6 GB RAM from /proc/meminfo)"]
-        IO["Storage & Devices: Virtual Block Storage, Virtual NIC, Console, Hardware Timer"]
-    end
+### 1. What is `/proc`? Is it a real filesystem on disk?
 
-    UserSpace -->|"Invokes system calls"| SCI
-    SCI -->|"Switches to Kernel Mode (Ring 0)"| KernelSpace
-    KernelSpace -->|"Controls & mediates physical resources"| HardwareLayer
-```
+`/proc` is a virtual filesystem provided by the Linux kernel. It is not a normal filesystem stored on a physical disk. Instead, its files are generated dynamically by the kernel to provide information about running processes, memory usage, CPU details, and other system information.
 
-### Questions
+### 2. Monolithic kernel vs. microkernel — which type does Linux use?
 
-1. **What is `/proc`? Is it a real filesystem on disk?**
+- **Monolithic kernel:** Most core operating system services, including process scheduling, memory management, filesystems, and device drivers, run in kernel space.
+- **Microkernel:** Only essential functions run in kernel space, while many other services operate in user space.
+- **Linux:** Linux uses a monolithic kernel design. However, it also supports loadable kernel modules, which allow certain kernel components to be loaded and unloaded when needed.
 
-   > `/proc` is a virtual (pseudo) filesystem created in memory (RAM) by the Linux kernel. It is not stored on a physical storage disk; the kernel dynamically generates its files and contents when read to expose real-time kernel state, hardware information, and running process data.
+### 3. What memory regions do you see in `/proc/self/maps`?
 
-2. **Monolithic kernel vs. microkernel — which type does Linux use?**
+The `/proc/self/maps` file displays the memory regions used by a process. Common regions include:
 
-   > - **Monolithic Kernel:** Core OS services (scheduling, memory management, filesystems, device drivers) run in a single shared, privileged address space (Ring 0).
-   > - **Microkernel:** Keeps minimal functionality in kernel space (IPC, basic scheduling) and runs most services in user space.
-   > - **Linux:** Uses a **monolithic kernel** that supports dynamic Loadable Kernel Modules (LKMs) via `lsmod`.
+- **Executable code:** Contains the program's machine instructions.
+- **Data segments:** Store global and static variables with different access permissions.
+- **Heap:** Used for dynamic memory allocation, such as with `malloc()`.
+- **Shared libraries:** Contains libraries loaded by the program, such as `libc.so.6`.
+- **Stack:** Stores function call information, local variables, and other temporary data.
+- **`[vdso]` and `[vvar]`:** Special memory regions used to provide certain kernel-related information and allow some operations to be performed efficiently.
 
-3. **What memory regions do you see in `/proc/self/maps`?**
+The exact regions may vary depending on the program and the system.
 
-   > - Executable text segment (`r-xp`) containing machine instructions
-   > - Read-only (`r--p`) and read-write (`rw-p`) data segments
-   > - `[heap]` for dynamic heap memory allocations (`malloc`/`brk`)
-   > - Shared libraries (`libc.so.6`, `ld-linux-x86-64.so.2`)
-   > - `[stack]` for function frames, local variables, and return pointers
-   > - `[vvar]` and `[vdso]` kernel virtual pages for fast system calls
+### 4. Break down the kernel version string from `uname -a`.
 
-4. **Break down the kernel version string from `uname -a`.**
+Based on my terminal output, the kernel version is `7.0.0-38-generic`.
 
-   > Based on `uname -a` (`7.0.0-38-generic #38-Ubuntu SMP PREEMPT_DYNAMIC x86_64`):
-   > - `7`: Major kernel version
-   > - `0`: Minor kernel release
-   > - `0`: Patch level
-   > - `-38`: Distribution ABI / build revision number
-   > - `-generic`: Ubuntu kernel configuration flavor
-   > - `#38-Ubuntu`: Official distro build number
-   > - `SMP PREEMPT_DYNAMIC`: Symmetric Multiprocessing with dynamic preemption
-   > - `x86_64`: 64-bit CPU architecture
+- **`7`:** Major kernel version.
+- **`0`:** Minor version.
+- **`0`:** Additional version component.
+- **`38`:** Ubuntu kernel build revision.
+- **`generic`:** Indicates the general-purpose Ubuntu kernel flavor.
+- **`#38-Ubuntu`:** Identifies the kernel build.
+- **`SMP`:** Indicates support for symmetric multiprocessing.
+- **`PREEMPT_DYNAMIC`:** Indicates that the kernel supports dynamically configurable preemption behavior.
+- **`x86_64`:** Indicates a 64-bit x86 architecture.
 
-5. **How does `/proc` show that the OS is an intermediary between programs and hardware?**
+### 5. How does `/proc` show that the OS is an intermediary between programs and hardware?
 
-   > User programs cannot directly access hardware registers or memory controllers due to CPU privilege ring protection. The OS kernel queries the physical hardware, abstracts the raw state into structured virtual text files in `/proc` (such as `/proc/cpuinfo` and `/proc/meminfo`), and provides unprivileged user programs a safe, standard file read interface to inspect system hardware.
-
----
+The `/proc` filesystem demonstrates how the operating system provides programs with an interface to system information. For example, `/proc/cpuinfo` provides CPU details, while `/proc/meminfo` shows memory information. The kernel gathers and presents this information in a readable format, allowing user programs to inspect the system without directly accessing hardware.
 
 ## Reflection
 
-What did you learn from this activity? What was the most surprising difference between library functions and system calls?
-
-> Through this activity, I learned that C standard library functions (like `printf` and `fopen`) are user-space abstractions with internal buffering that operate on top of low-level POSIX system calls (`write`, `open`, `read`, `close`). Tracing with `strace` revealed the true boundary between user space and kernel space, showing how library functions reduce overhead by batching multiple I/O operations into fewer system calls. Exploring `/proc` further clarified how the operating system manages process memory maps and mediates access to hardware resources.
+Through this activity, I learned more about how the Linux operating system works and how programs interact with the kernel. I discovered that library functions, such as `printf()` and `fopen()`, provide convenient interfaces for programmers, while system calls, such as `write()`, `open()`, and `read()`, allow programs to request services from the kernel. I also learned that library functions may use buffering to reduce the number of system calls. Using tools such as `strace` helped me understand the interaction between user space and kernel space. Finally, exploring `/proc` helped me understand how Linux provides information about processes, memory, and hardware.
