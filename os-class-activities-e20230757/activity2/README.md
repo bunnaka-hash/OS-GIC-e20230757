@@ -1,8 +1,8 @@
 # Class Activity 2 — Processes & Inter-Process Communication
 
-- **Student Name:** KHORN VICTOR
-- **Student ID:** e20230078
-- **Date:** 23/10/2026
+- **Student Name:** Pen Bunnaka
+- **Student ID:** e20230757
+- **Date:** 30/10/2026
 
 ---
 
