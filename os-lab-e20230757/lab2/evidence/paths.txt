@@ -1,0 +1,22 @@
+OS Lab 2 — Core 2 Evidence
+
+1. to move the first report using a relative path:
+`mv -- "$file1" ../reports/`
+
+2. to move the second report using absolute paths:
+`mv -- "$OSLAB_WORKSPACE/lab2/incoming/$file2" "$OSLAB_WORKSPACE/lab2/reports/"`
+
+3.to copy both reports into the owner department:
+`cp -- "reports/$file1" "TechCorp/$owner/"`
+`cp -- "reports/$file2" "TechCorp/$owner/"`
+
+4.to copy the first report into the archive with a new name:
+`cp -- "reports/$file1" "TechCorp/$owner/archive/first-original.txt"`
+
+5. Path decision:
+I used relative paths to move the first report and absolute paths to move the second report. Relative paths are shorter and convenient when I know my current directory. Absolute paths are useful when I want to specify the exact location regardless of my current directory.
+
+Error: cat: 'reports/budget 2026.txt': No such file or directory
+xFix: ../../reports/budget 2026.txt
+Error: cat: 'reports/budget 2026.txt': No such file or directory
+Fix: ../../reports/budget 2026.txt

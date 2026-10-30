@@ -1,0 +1,3 @@
+Consumer: reading from shared memory '/OS-khorn-victor'
+Consumer: message = "Hello, this is shared memory IPC!"
+Consumer: shared memory unlinked.

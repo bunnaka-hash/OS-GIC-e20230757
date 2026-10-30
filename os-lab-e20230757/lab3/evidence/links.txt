@@ -1,0 +1,7 @@
+cat: soft.txt: No such file or directory
+18493288 -rw-rw-r-- 2 gic-pen-bunnaka gic-pen-bunnaka 10 Oct 30 14:31 hard.txt
+18493288 -rw-rw-r-- 2 gic-pen-bunnaka gic-pen-bunnaka 10 Oct 30 14:31 renamed.txt
+18493361 lrwxrwxrwx 1 gic-pen-bunnaka gic-pen-bunnaka 11 Oct 30 15:11 soft.txt -> renamed.txt
+renamed.txt
+version 1
+version 1

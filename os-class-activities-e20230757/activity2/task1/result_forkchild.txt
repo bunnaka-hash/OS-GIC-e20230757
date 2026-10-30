@@ -1,0 +1,13 @@
+Parent process (PID: 5835) — creating child...
+Parent: waiting for child (PID: 5836) to finish...
+Child process (PID: 5836, Parent PID: 5835)
+Child: sleeping 30s — observe the process tree now!
+Child: now executing 'ls -la'...
+total 40
+drwxrwxr-x 2 victor victor  4096 Oct 22 13:04 .
+drwxrwxr-x 4 victor victor  4096 Oct 22 12:44 ..
+-rwxrwxr-x 1 victor victor 16480 Oct 22 13:03 forkchild
+-rw-rw-r-- 1 victor victor  4841 Oct 22 13:02 forkchild.c
+-rw-rw-r-- 1 victor victor   231 Oct 22 13:04 result_forkchild.txt
+Parent: child exited with status 0
+Parent: done.

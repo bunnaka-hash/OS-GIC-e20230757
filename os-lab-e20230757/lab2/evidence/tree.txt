@@ -1,0 +1,6 @@
+TechCorp/Legal/archive/first-original.txt
+TechCorp/Legal/budget 2026.txt
+TechCorp/Legal/cash flow.txt
+reports/README.txt
+reports/budget 2026.txt
+reports/cash flow.txt
