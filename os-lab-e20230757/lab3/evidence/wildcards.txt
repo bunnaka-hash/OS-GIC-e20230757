@@ -1,0 +1,6 @@
+<notes/market1.txt>
+<notes/market12.txt>
+<notes/market2.txt>
+<notes/market1.txt>
+<notes/market2.txt>
+<notes/*.txt>
