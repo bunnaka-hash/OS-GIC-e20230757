@@ -1,0 +1,10 @@
+Main thread started.
+Main thread finished creating tasks.
+Task 4 is running on thread: Thread-3
+Task 3 is running on thread: Thread-2
+Task 2 is running on thread: Thread-1
+Task 1 is running on thread: Thread-0
+Task 1 finished.
+Task 2 finished.
+Task 4 finished.
+Task 3 finished.

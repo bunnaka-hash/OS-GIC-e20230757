@@ -1,0 +1,20 @@
+ 1220  tree
+ 1221  cd ..
+ 1222  tree
+ 1223  cd task2_threads
+ 1224  mkdir -p task2_threads
+ 1225  cd task2_threads
+ 1226  pwd
+ 1227  hqzspj6gd6
+ 1228  cd os-gic-e20230757/os-class-activities-e20230757/activity3/
+ 1229  cd task2_threads
+ 1230  nano threads.c
+ 1231  gcc -o threads threads.c -pthread
+ 1232  ./threads > result_threads.txt 2>&1
+ 1233  cat result_threads.txt
+ 1234  nano threads_mutex.c
+ 1235  gcc -o threads_mutex threads_mutex.c -pthread
+ 1236  1~
+ 1237  ./threads_mutex > result_threads_mutex.txt 2>&1
+ 1238  cat result_threads_mutex.txt
+ 1239  history | tail -n 20 > command_used_threads.txt

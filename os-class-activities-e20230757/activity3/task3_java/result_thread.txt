@@ -1,0 +1,10 @@
+Main thread started.
+Main thread finished creating workers.
+Thread 1 is running. Thread ID: 25
+Thread 2 is running. Thread ID: 26
+Thread 4 is running. Thread ID: 28
+Thread 3 is running. Thread ID: 27
+Thread 3 finished.
+Thread 1 finished.
+Thread 4 finished.
+Thread 2 finished.

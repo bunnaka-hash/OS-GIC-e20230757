@@ -1,0 +1,14 @@
+Main thread started.
+Task 1 is running on pool-1-thread-1
+Task 2 is running on pool-1-thread-2
+Task 1 completed.
+Task 2 completed.
+Task 3 is running on pool-1-thread-2
+Task 4 is running on pool-1-thread-1
+Task 3 completed.
+Task 4 completed.
+Task 5 is running on pool-1-thread-2
+Task 6 is running on pool-1-thread-1
+Task 5 completed.
+Task 6 completed.
+All tasks completed.

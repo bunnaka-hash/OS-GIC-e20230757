@@ -1,0 +1,30 @@
+ 1239  history | tail -n 20 > command_used_threads.txt
+ 1240  ls -l
+ 1241  tree
+ 1242  cd os-gic-e20230757/os-class-activities-e20230757/activity3/task2_threads/
+ 1243  tree
+ 1244  cd ..
+ 1245  tree
+ 1246  cd task2_threads/
+ 1247  cat result_threads.txt
+ 1248  cat result_threads_mutex.txt
+ 1249  ls -l
+ 1250  mkdir -p ~/os-gic-e20230757/os-class-activities-e20230757/activity3/screenshots
+ 1251  java --version
+ 1252  javac --version
+ 1253  cd ~/os-gic-e20230757/os-class-activities-e20230757/activity3
+ 1254  mkdir -p task3_java
+ 1255  cd task3_java
+ 1256  nano ThreadDemo.java
+ 1257  javac ThreadDemo.java
+ 1258  java ThreadDemo
+ 1259  nano RunnableDemo.java
+ 1260  javac RunnableDemo.java
+ 1261  java RunnableDemo
+ 1262  nano PoolDemo.java
+ 1263  javac PoolDemo.java
+ 1264  java PoolDemo
+ 1265  java ThreadDemo > result_thread.txt 2>&1
+ 1266  java RunnableDemo > result_runnable.txt 2>&1
+ 1267  java PoolDemo > result_pool.txt 2>&1
+ 1268  history | tail -n 30 > command_used_java.txt
